@@ -3,10 +3,13 @@
 use App\Http\Controllers\addingcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admincontroller;
-use App\Http\Controllers\editingconroller;
+// use App\Http\Controllers\editingconroller;
 use App\Http\Controllers\editingcontroller;
 use App\Http\Controllers\InsertDB;
 use App\Http\Controllers\listingcontroller;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,4 +100,20 @@ Route::post('/admin/listing/{model}', [listingcontroller::class, 'index'])->name
 Route::get('/admin/editing/{model}', [editingcontroller::class, 'create'])->name('editing.create');
 Route::post('/admin/editing/{model}', [editingcontroller::class, 'store'])->name('editing.store');
 
+Route::get('/home', [ProductController::class, 'index'])->name('home');
 
+Route::group(['prefix'=> 'signup'], function(){
+    Route::get('/', [HomeController::class, 'getSignup'])->name('dangky');
+    Route::post('/', [HomeController::class, 'postSignup'])->name('store');
+});
+
+Route::group(['prefix'=> 'login'], function(){
+    Route::get('/', [HomeController::class, 'getLogin'])->name('login');
+    Route::post('/', [HomeController::class, 'postLogin']);
+});
+
+Route::get('logout', [HomeController::class, 'getLogout']);
+
+Route::get('/admin/listing/user', [HomeController::class, 'getCustomer']);
+
+Route::get('/cart', [HomeController::class, 'getCart'])->name('getcart');

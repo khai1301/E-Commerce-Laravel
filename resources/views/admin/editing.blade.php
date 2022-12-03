@@ -59,7 +59,7 @@
                         </div>
                         <div class="x_content">
                             <?php if(!empty($success)) { ?>
-                                <h3>Thêm sản phẩm thành cônh</h3><a href="/admin/listing/product">Danh sach sản phẩm</a>
+                                <h3>Thêm sản phẩm thành công</h3><a href="/admin/listing/product">Danh sach sản phẩm</a>
                             <?php } else {
                                 ?>
                             
