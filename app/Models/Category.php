@@ -33,11 +33,43 @@ class Category extends Base
                 'listing'=>true,
                 'editing'=>true
                 
+            ),array(
+                'field'=>'image',
+                'name'=>'Ảnh sản phẩm',
+                'type'=>'image',
+                'listing'=>true,
+                'editing'=>true,
+                'validate'=>'required'
+                
             )
+            
             
 
         );
-        
+        $editingConfigs= array(
+            array(
+                'field'=>'id',
+                'name'=>'ID',
+                'type'=>'text',
+                'filter'=>'equal',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>false
+            ),
+       
+            array(
+                'field'=>'name',
+                'name'=>'Tên sản phẩm',
+                'type'=>'text',
+                'filter'=>'like',
+                'sort'=>true,
+                'listing'=>true,
+                'editing'=>true
+            )
+            );
         return array_merge($listingConfigs, $defautlistingConfigs);
     }
+        
+        
+    
 }

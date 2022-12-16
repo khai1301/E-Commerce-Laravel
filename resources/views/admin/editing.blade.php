@@ -59,7 +59,11 @@
                         </div>
                         <div class="x_content">
                             <?php if(!empty($success)) { ?>
+<<<<<<< HEAD
                                 <h3>Thêm sản phẩm thành công</h3><a href="/admin/listing/product">Danh sach sản phẩm</a>
+=======
+                                <h3>Thêm  thành công</h3><a href="{{ route('listing.index', ['model'=>$modelName]) }}">Danh sách {{$modelName}}</a>
+>>>>>>> 4de5f068d1afb80aca0220f1e7db82912543066b
                             <?php } else {
                                 ?>
                             
@@ -67,7 +71,7 @@
                              </form>
 
                              <form class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data"
-                                action="{{ route('editing.store', ['model'=>'product']) }}">
+                                action="{{ route('editing.store', ['model'=>$modelName]) }}">
                                 @csrf
                                 <?php
                                 if (!empty($configs)) {
@@ -121,6 +125,40 @@
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
                                                         <textarea id="product-content"  name="<?= $config['field'] ?>" class="form-control ckeditor-box" rows="3" placeholder="<?= htmlspecialchars($config['name']) ?>"></textarea>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                                break;
+                                            case 'select':
+                                            $field=$config['field'];
+                                                ?>
+                                               
+                                                    <div class="form-group row ">
+                                                        <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
+                                                        <div class="col-md-9 col-sm-9 ">
+                                                            <select class="form-control" name="<?= $config['field'] ?>" id="" placeholder="<?= htmlspecialchars($config['name']) ?>">
+                                                                       @foreach ($categories as $category )
+                                                                         <option value="{{$category->name}}">{{$category->name}}</option>
+                                                                       @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                
+                                                <?php
+                                                break;
+                                             case 'bit':
+                                            $field=$config['field'];
+                                                ?>
+                                                <div class="form-group row ">
+                                                    <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
+                                                    <div class="col-md-9 col-sm-9 ">
+                                                        <div class="checkbox">
+                                                            <input id="check1" type="checkbox" value="yes" name=<?= $config['field'] ?>  >
+                                                            <label for="check1">Yes</label>
+                                                            <br>
+                                                            <input id="check2" type="checkbox" name=<?= $config['field'] ?> value="no"  >
+                                                            <label for="check2">No</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <?php

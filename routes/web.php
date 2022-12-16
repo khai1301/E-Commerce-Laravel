@@ -3,8 +3,11 @@
 use App\Http\Controllers\addingcontroller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admincontroller;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 // use App\Http\Controllers\editingconroller;
 use App\Http\Controllers\editingcontroller;
+use App\Http\Controllers\indexcontroller;
 use App\Http\Controllers\InsertDB;
 use App\Http\Controllers\listingcontroller;
 use App\Http\Controllers\ProductController;
@@ -81,17 +84,13 @@ Route::get('/admin/qladmin', function () {
     return view('admin.qladmin');
 })->name('qladmin.');
 
-// Route::get('/home', function () {
-//     return view('QuanLy.home');
-// });
-
-// Route::get('/home', [InsertDB::class, 'get']);
 
 
 
 
 
 
+// route quan ly
 
 Route::post('/admin/login', [AdminController::class, 'loginPost'])->name('admin.loginPost');
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -100,7 +99,14 @@ Route::post('/admin/listing/{model}', [listingcontroller::class, 'index'])->name
 Route::get('/admin/editing/{model}', [editingcontroller::class, 'create'])->name('editing.create');
 Route::post('/admin/editing/{model}', [editingcontroller::class, 'store'])->name('editing.store');
 
+// <<<<<<< HEAD
 Route::get('/home', [ProductController::class, 'index'])->name('home');
+// =======
+// route trang chu
+Route::get('/', [indexcontroller::class, 'index'])->name('index.index');
+
+
+// >>>>>>> 4de5f068d1afb80aca0220f1e7db82912543066b
 
 Route::group(['prefix'=> 'signup'], function(){
     Route::get('/', [HomeController::class, 'getSignup'])->name('dangky');
@@ -114,6 +120,20 @@ Route::group(['prefix'=> 'login'], function(){
 
 Route::get('logout', [HomeController::class, 'getLogout']);
 
-Route::get('/admin/listing/user', [HomeController::class, 'getCustomer']);
+Route::get('/admin/listing/user', [HomeController::class, 'getCustomer'])->middleware('CheckLogout::class');
+//show cart
+Route::get('/cart-{id}', [ProductController::class, 'getCart'])->name('getcart');
 
-Route::get('/cart', [HomeController::class, 'getCart'])->name('getcart');
+// lay san pham theo loai
+Route::get('/products/{id}', [ProductController::class, 'getTypeProduct'])->name('laysptheoloai');
+
+Route::get('/shop', [CategoryController::class, 'index']);
+//addcart
+Route::get('/Add-Cart/{id}', [ProductController::class, 'addcart'])->name('addcart');
+
+//update cart
+Route::get('/update-cart', [ProductController::class, 'updateCart'])->name('updatecart');
+//delete cart
+Route::get('/delete-cart', [ProductController::class, 'deleteCart'])->name('deletecart');
+//infor_checkout_customer
+Route::post('/cart/check-out-{id}',[CheckoutController::class, 'save_checkout_customer'])->name('saveCheckout');

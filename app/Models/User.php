@@ -12,7 +12,7 @@ class User extends  Base implements \Illuminate\Contracts\Auth\Authenticatable
     use HasFactory;
     use Authenticatable;
 
-    protected $fillable =['name', 'email', 'gender', 'password'];
+    protected $fillable =['name', 'email', 'gender', 'password', 'level'];
 
     // protected $fillable = [
     //     'email',
@@ -69,7 +69,6 @@ class User extends  Base implements \Illuminate\Contracts\Auth\Authenticatable
                 'type'=>'text',
                 'filter'=>'like'
             ),
-
             
         );
         return array_merge($listingConfigs, $defautlistingConfigs);

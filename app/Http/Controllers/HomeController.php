@@ -35,6 +35,7 @@ class HomeController extends Controller
                     'gender'=> $request -> gender,
                     'email'=> $request -> email,
                     'password'=> bcrypt($request->password),
+                    'level'=>'0',
                 ]);
         
                 return redirect()->route('login')->with('message', 'Đăng ký thành công');
@@ -70,10 +71,8 @@ class HomeController extends Controller
 
     public function getLogout(){
         Auth::logout();
+        session()->forget('cart');
         return redirect()->intended('login');
     }
 
-    public function getCart(){
-        return view('frontend.cart');
-    }
 }

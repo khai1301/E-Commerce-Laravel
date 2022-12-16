@@ -133,14 +133,7 @@ class Base extends Model
                 'sort' => true,
                 'listing' => true,
                 'editing' => false
-            ),
-            array(
-                'field' => 'copy',
-                'name' => 'Copy',
-                'type' => 'copy',
-                'listing' => true,
-                'editing' => false
-            ),
+            ),  
             array(
                 'field' => 'edit',
                 'name' => 'Sửa',

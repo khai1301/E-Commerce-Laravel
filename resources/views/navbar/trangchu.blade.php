@@ -139,176 +139,23 @@
                         <p id="p1"><b>Sản phẩm nổi bật</b></p>
                     </div>
                     <div class="row1">
+                                
+                        @foreach ($featured_product as $featured_product )
                         <div class="pr" >
                             <div class="">
-                                <img width="2048" height="2048" src="img\buoi.jpg" alt="" id="pr">
+                                <img width="2048" height="2048" src="{{$featured_product->image}}" alt="" id="pr">
                             </div>
                             <div class="namepr">
-                                <a href="giohang.html">Bưởi da xanh hướng hữu cơ 1kg</a>
+                                <a href="giohang.html">{{$featured_product->name}}</a>
                             </div>
                             <div class="price">
-                                <p>75.000 đ</p>
+                                <p>{{$featured_product->price}} đ</p>
                             </div>
                             <div class="add">
                                 <a href="giohang.html" id="add">Thêm vào giỏ</a>
                             </div>
                         </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\thanhlong.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="giohang.html">Thanh long sạch Bình Thuận 1kg</a>
-                            </div>
-                            <div class="price">
-                                <p>45.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="giohang.html" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\saurieng.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="giohang.html">Sầu riêng Ri6 sạch 1kg</a>
-                            </div>
-                            <div class="price">
-                                <p>235.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="giohang.html" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\xoai.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Xoài cát Hòa Lộc Global GAP loại đặc biệt</a>
-                            </div>
-                            <div class="price">
-                                <p>140.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\cai.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Cải bó xôi hữu cơ (Rau chân vịt) 350g</a>
-                            </div>
-                            <div class="price">
-                                <p>30.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\bo.jpeg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Bơ sáp 034 Lâm Đồng hướng hữu cơ 1kg</a>
-                            </div>
-                            <div class="price">
-                                <p>135.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row1 row2">
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\catracvang.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Cá Trác vàng biển Ích Hữu 400g</a>
-                            </div>
-                            <div class="price">
-                                <p>75.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\cabasa.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Cá Basa cắt lát hữu cơ Binca hộp 270g</a>
-                            </div>
-                            <div class="price">
-                                <p>75.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\ga.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Gà ta thả vườn Bình Định 1kg</a>
-                            </div>
-                            <div class="price">
-                                <p>155.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\thitheo.png" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Thịt nạc đùi heo hữu cơ 400g Thịt nạc đùi heo hữu cơ 400g</a>
-                            </div>
-                            <div class="price">
-                                <p>84.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\tomsu.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Tôm sú hữu cơ Binca size đặc biệt XL hộp 250g</a>
-                            </div>
-                            <div class="price">
-                                <p>180.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
-                        <div class="pr">
-                            <div class="">
-                                <img width="2048" height="2048" src="img\cam.jpg" alt="" id="pr">
-                            </div>
-                            <div class="namepr">
-                                <a href="">Cam xoàn hướng hữu cơ 1kg</a>
-                            </div>
-                            <div class="price">
-                                <p>65.000 đ</p>
-                            </div>
-                            <div class="add">
-                                <a href="" id="add">Thêm vào giỏ</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="more">
                         <a href="cuahang.html" id="more">Xem thêm</a>

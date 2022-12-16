@@ -57,6 +57,20 @@ public $title="SẢN PHẨM ";
                 'type'=>'ckeditor',
                 'listing'=>false,
                 'editing'=>true
+            ),
+            array(
+                'field'=>'category_id',
+                'name'=>'Danh mục của sản phẩm',
+                'type'=>'select',
+                'listing'=>false,
+                'editing'=>true
+            ),
+            array(
+                'field'=>'featured_product',
+                'name'=>'Sản phẩm nổi bật',
+                'type'=>'bit',
+                'listing'=>true,
+                'editing'=>true
             )
 
         );
@@ -102,8 +116,25 @@ public $title="SẢN PHẨM ";
                 'type'=>'ckeditor',
                 'listing'=>false,
                 'editing'=>true
+            ),
+            array(
+                'field'=>'category_id',
+                'name'=>'Danh mục của sản phẩm',
+                'type'=>'select',
+                'listing'=>true,
+                'editing'=>true
+            ),
+            array(
+                'field'=>'featured_product',
+                'name'=>'Sản phẩm nổi bật',
+                'type'=>'bit',
+                'listing'=>true,
+                'editing'=>true
             )
             );
         return array_merge($listingConfigs, $defautlistingConfigs);
+    }
+    public function typeProduct(){
+
     }
 }

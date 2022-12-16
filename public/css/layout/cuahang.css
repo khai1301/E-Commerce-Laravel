@@ -41,7 +41,6 @@
 }
 .namepr>a{
     text-align: center;
-    padding-top: 15px;
     font-weight: bold;
 
     color: black;
@@ -168,7 +167,7 @@ input[type='search']{
     border: 1px solid #ddd;
     max-width: 100%;
 }
-.menu-header ul.sub-menu{
+/* .menu-header ul.sub-menu{
     position: absolute;
     background-color: #fff;
     padding: 15px 0px 15px;
@@ -181,7 +180,7 @@ input[type='search']{
     top: 49px;
     right: 315px;
     display: none;
-}
+} */
 .menu-header ul.sub-menu li:hover {
     background-color: rgb(228, 222, 222);
 }
@@ -197,9 +196,7 @@ input[type='search']{
     width: 100%;
     max-width: 1240px;
 }
-li.menubar1 {
-    padding: 15px 15px 15px 15px;
-}
+
 body{
     margin: 0px;
 }
@@ -251,15 +248,15 @@ aside{
     padding: 20px 0 0 0;
     border: 1px solid #eee;
 }
-.menu{
-    font-size: 14px;
+.menu_category{
+    font-size: 22px;
     font-weight: bold;
     border: 0px solid #ddd;
     border-radius: 0px;
     padding: 0;
     background-color: #fff;
 }
-ul.menu>li{
+ul.menu_category>li{
     list-style: none;
     margin-bottom: 0.3em;
     text-align: left;
@@ -484,7 +481,6 @@ ul.pr_list>ul>li>a>img{
 background: #fff;
   position: fixed !important;
   width: 100%;
-  padding: 10px 0px;
   top: 0;
   transition: all 0.4s ease;
   z-index: 999;
@@ -638,4 +634,11 @@ background: #fff;
  .traicay:checked ~ .row2 
  {
     display: none;
+ }
+ ul.menu_category>li:hover {
+    background-color: #6abd45;
+
+ }
+ ul.menu_category>li:hover a{
+    color: #fff;
  }

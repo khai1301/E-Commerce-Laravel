@@ -145,6 +145,11 @@
                                                             <td><?= number_format($record[$config['field']], 0, ',', '.') ?></td>
                                                             <?php
                                                             break;
+                                                         case "bit":
+                                                            ?>
+                                                            <td><?= $record[$config['field']] ?></td>
+                                                            <?php
+                                                            break;
                                                         case "copy":
                                                             ?>
                                                             <td><a href="#"><i class="fa fa-clone" aria-hidden="true"></i>&nbsp;Copy</a></td>
