@@ -4,53 +4,49 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Basel;
+use App\Models\Base;
 
 
 class Order extends Base
 {
     use HasFactory;
-    public $title="ĐƠN HÀNG";
-    public function listingConfigs(){
-        $defautlistingConfigs = parent::defaultlistingConfigs();
-        $listingConfigs= array(
-            array(
-                'field'=>'id',
-                'name'=>'ID',
-                'type'=>'text',
-                'filter'=>'equal'
-            ),
+    // public $title="ĐƠN HÀNG";
+    // public function listingConfigs(){
+    //     $listingConfigs= array(
+    //         array(
+    //             'field'=>'order_id',
+    //             'name'=>'Mã đơn hàng',
+    //             'type'=>'idd',
+    //             'filter'=>'equal'
+    //         ),
        
-            array(
-                'field'=>'name',
-                'name'=>'Tên khách hàng',
-                'type'=>'text',
-                'filter'=>'like'
-            ),
-            array(
-                'field'=>'address',
-                'name'=>'Địa chỉ giao hàng',
-                'type'=>'text',
-                'filter'=>'like'
-            ),
-            array(
-                'field'=>'phone',
-                'name'=>'Số điện thoại khách hàng',
-                'type'=>'text',
-                'filter'=>'like'
-            ),
-            array(
-                'field'=>'created_day',
-                'name'=>'Ngày tạo',
-                'type'=>'text'
-            ),
-            array(
-                'field'=>'status',
-                'name'=>'Tình trạng',
-                'type'=>'text'
-            ),
+    //         array(
+    //             'field'=>'customer_id',
+    //             'name'=>'Mã khách hàng',
+    //             'type'=>'idd',
+    //             'filter'=>'like'
+    //         ),
+    //         array(
+    //             'field'=>'payment_id',
+    //             'name'=>'Mã thanh toán',
+    //             'type'=>'idd',
+    //             'filter'=>'like'
+    //         ),
+    //         array(
+    //             'field'=>'order_total',
+    //             'name'=>'Tổng đơn hàng',
+    //             'type'=>'idd',
+    //             'filter'=>'like'
+    //         ),
+    //         array(
+    //             'field'=>'order_status',
+    //             'name'=>'Trạng thái',
+    //             'type'=>'text'
+    //         ),
             
-        );
-        return array_merge($listingConfigs, $defautlistingConfigs);
-    }
+            
+            
+    //     );
+    //     return array_merge($listingConfigs);
+    // }
 }

@@ -187,7 +187,7 @@ input[type='search']{
     width: 100%;
     font-size: 30px;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 30px;
 }
 .menubot{
     width: 100%;
@@ -207,7 +207,7 @@ h3{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: end;
+    justify-content: center;
 }
 .image{
     width: 60%;
@@ -216,6 +216,11 @@ h3{
 }
 .text-center{
     text-align: center;
+}
+.menubot1{
+    border: 10px solid #d8ffaf;
+    background-color: #d8ffaf;
+    border-radius: 35%;
 }
 .container{
     position: relative;
@@ -323,9 +328,11 @@ body {
     height: 80px;
 }
 .pr{
-    max-width: 13%;
-    flex-basis: 13%;
-    overflow: hidden;
+    width: 230px;
+    margin: 10px;
+    transition: 0.5s;
+    margin: 10px;
+    scroll-snap-align: start;
 }
 .row1{
     width: 100%;
@@ -819,3 +826,45 @@ img {vertical-align: middle;}
         margin: 0px -135px;
     }
  }
+
+ .direction{
+    text-align: center;
+    padding-bottom: 15px;
+}
+.direction button{
+    font-family: cursive;
+    font-weight: bold;
+    background-color:  rgb(132 228 70);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: 0.5s;
+    margin: 0 10px;
+}
+.direction button:hover{
+    background-color: #ffffff;
+}
+#list{
+    display: flex;
+    width: max-content;
+}
+#formList{
+    max-width: 100%;
+    overflow: auto;
+    margin: 10px auto;
+    width: 1000px;
+    scroll-behavior: smooth;
+    scroll-snap-type: both;
+}
+#formList::-webkit-scrollbar{
+    display: none;
+}
+@media screen and (max-width: 768px){
+    .item{
+        width: calc(50vw - 20px);
+    }
+    .direction{
+        display: none;
+    }
+}

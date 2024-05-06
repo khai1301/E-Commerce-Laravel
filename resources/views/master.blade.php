@@ -11,11 +11,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="{{ asset('css/layout/slideshow.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('css/layout/slideshow.css') }}"> --}}
         <link rel="stylesheet" href="{{ asset('css/layout/swiper-bundle.min.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{{ asset('css/layout/cuahang.css') }}">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         <style>
             .sub-cart{
                 position: absolute;
@@ -38,9 +39,9 @@
             .ch:hover .dropdown-menu{
                 display: block;
             }
-            #checkout {
+            /* #checkout {
                 display: none;
-            }
+            } */
             
         </style>
     </head>
@@ -65,11 +66,12 @@
                                                         <a href="{{ route('home') }}" class="nav-item nav-link active">Trang Chủ</a>
                                                     </li>
                                                     <li class="menubar1">
-                                                        <a href="" class="nav-item nav-link">Giới Thiệu</a>
+                                                        <a href="{{ route('about') }}" class="nav-item nav-link">Giới Thiệu</a>
                                                     </li>
                                                     <li class="menubar1">
                                                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Cửa Hàng</a>
                                                         <ul class="sub-menu" style="font-weight: 500;font-size: 18px;">
+                                                                <a href="{{ route('storeWeb') }}" class="dropdown-item">Tất cả sản phẩm</a>
                                                             @foreach ($categories as $category)
                                                                 <a href="{{ route('laysptheoloai',$category->name) }}" class="dropdown-item">{{ $category->name }}</a>
                                                             @endforeach
@@ -86,8 +88,8 @@
                                         </div>
                                         <form class="d-flex">
                                             <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search">
-                                                <button type="button" class="btn btn-secondary"><i class="bi-search"></i></button>
+                                                <input type="text" name="key"  class="form-control" placeholder="Tìm kiếm">
+                                                <button type="submit" class="btn btn-secondary"><i class="bi-search"></i></button>
                                             </div>
                                         </form>
                                         @if(Auth::guest())
@@ -160,8 +162,7 @@
                             <i class="fas fa-gem me-3"></i>Fresh Organic Food
                         </h6>
                         <p>
-                            Here you can use rows and columns to organize your footer content. Lorem ipsum
-                            dolor sit amet, consectetur adipisicing elit.
+                            Hệ thống cung cấp thực phẩm sạch từ vườn, được chính những người nông dân làm nên với công nghệ Organic đạt chuẩn nên quý khách hàng có thể hoàn toàn yên tâm về chất lượng của sản phẩm.
                         </p>
                         </div>
                         <!-- Grid column -->
@@ -173,16 +174,9 @@
                             Sản phẩm
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Angular</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">React</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Vue</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Laravel</a>
+                            @foreach ($categories as $category)
+                                <a href="{{ route('laysptheoloai',$category->name) }}" class="dropdown-item">{{ $category->name }}</a>
+                            @endforeach
                         </p>
                         </div>
                         <!-- Grid column -->
@@ -194,16 +188,13 @@
                             Danh mục
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Pricing</a>
+                            <a href="#!" class="text-reset">Trang Chủ</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Settings</a>
+                            <a href="#!" class="text-reset">Giới thiệu</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Orders</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Help</a>
+                            <a href="#!" class="text-reset">Cửa Hàng</a>
                         </p>
                         </div>
                         <!-- Grid column -->
@@ -225,14 +216,45 @@
                     </div>
                 </section>
                 </footer>  
-            </div>
+        </div>
         <!--js nav-->
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script type="text/javascript">
             window.addEventListener("scroll", function(){
                 var header = document.querySelector(".header-menu");
                 header.classList.toggle("sticky", window.scrollY > 0);
             })
         </script>  
+        <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "108822008751628");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v15.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
         {{-- <script src="{{ asset('js/script.js') }}"></script>
         <script src="{{ asset('js/swiper-bundle.min.js') }}"> --}}
         {{-- </script> --}}

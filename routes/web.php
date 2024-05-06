@@ -24,57 +24,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function() {
-    return view('navbar/trangchu');
-})->name('trangchu.');
+Route::get('/', [ProductController::class, 'index']) -> name('home');
 
-Route::get('/cuahang', function () {
-    return view('navbar/cuahang');
-})->name('cuahang.');
 
 Route::get('admin/login', function () {
     return view('admin.login');
 })->name('login.');
 
-Route::get('/danhba', function () {
-    return view('navbar/danhba');
-})->name('danhba.');
-Route::get('/gioithieu', function () {
-    return view('navbar/gioithieu');
-})->name('gioithieu.');
-Route::get('/kienthuc', function () {
-    return view('navbar/kienthuc');
-})->name('kienthuc.');
-Route::get('/lienhe', function () {
-    return view('navbar/lienhe');
-})->name('lienhe.');
-
-
-
-Route::get('/raucu', function () {
-    return view('cuahang/cuahangraucu');
-})->name('cuahangraucu.');
-Route::get('/dokho', function () {
-    return view('cuahang/cuahangdokho');
-})->name('cuahangdokho.');
-Route::get('/raucu', function () {
-    return view('cuahang/cuahangraucu');
-})->name('cuahangraucu.');
-Route::get('/douong', function () {
-    return view('cuahang/cuahangdouong');
-})->name('cuahangdouong.');
-Route::get('/haisan', function () {
-    return view('cuahang/cuahanghaisan');
-})->name('cuahanghaisan.');
-Route::get('/thittrung', function () {
-    return view('cuahang/cuahangthittrung');
-})->name('cuahangthittrung.');
-Route::get('/traicay', function () {
-    return view('cuahang/cuahangtraicay');
-})->name('cuahangtraicay.');
-Route::get('/raucu', function () {
-    return view('cuahang/cuahangraucu');
-})->name('cuahangraucu.');
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
@@ -85,9 +41,9 @@ Route::get('/admin/qladmin', function () {
 })->name('qladmin.');
 
 
-
-
-
+Route::get('/about', function () {
+    return view('frontend.about');
+})->name('about');
 
 
 // route quan ly
@@ -99,14 +55,19 @@ Route::post('/admin/listing/{model}', [listingcontroller::class, 'index'])->name
 Route::get('/admin/editing/{model}', [editingcontroller::class, 'create'])->name('editing.create');
 Route::post('/admin/editing/{model}', [editingcontroller::class, 'store'])->name('editing.store');
 
-// <<<<<<< HEAD
+
 Route::get('/home', [ProductController::class, 'index'])->name('home');
 // =======
-// route trang chu
-Route::get('/', [indexcontroller::class, 'index'])->name('index.index');
+// =======
 
+Route::get('/admin/listing/{model}/{id}', [listingcontroller::class, 'edit'])->name('listing.edit');
 
-// >>>>>>> 4de5f068d1afb80aca0220f1e7db82912543066b
+Route::put('/admin/listing/{model}/{id}  ', [listingcontroller::class, 'update'])->name('listing.update');
+
+Route::DELETE('/admin/listing/{model}/{id}', [listingcontroller::class, 'destroy'])->name('listing.destroy');
+
+Route::get('/admin/listing/product/{category_id}/{id}', [listingcontroller::class, 'show'])->name('product.show');  
+
 
 Route::group(['prefix'=> 'signup'], function(){
     Route::get('/', [HomeController::class, 'getSignup'])->name('dangky');
@@ -123,7 +84,9 @@ Route::get('logout', [HomeController::class, 'getLogout']);
 Route::get('/admin/listing/user', [HomeController::class, 'getCustomer'])->middleware('CheckLogout::class');
 //show cart
 Route::get('/cart-{id}', [ProductController::class, 'getCart'])->name('getcart');
-
+Route::post('/cart-{totalPrice}-{id}', [ProductController::class, 'getTotal'])->name('getTotal');
+//tat ca san pham
+Route::get('/store', [ProductController::class, 'getFullProduct'])->name('storeWeb');
 // lay san pham theo loai
 Route::get('/products/{id}', [ProductController::class, 'getTypeProduct'])->name('laysptheoloai');
 
@@ -137,3 +100,19 @@ Route::get('/update-cart', [ProductController::class, 'updateCart'])->name('upda
 Route::get('/delete-cart', [ProductController::class, 'deleteCart'])->name('deletecart');
 //infor_checkout_customer
 Route::post('/cart/check-out-{id}',[CheckoutController::class, 'save_checkout_customer'])->name('saveCheckout');
+
+Route::get('/cart/payment/{id}',[CheckoutController::class, 'getCartPayment'])->name('cart_payment');
+Route::post('/cart/payment/{id}',[CheckoutController::class, 'save_payment_customer'])->name('savePayment');
+
+Route::get('/detail/{id}-{category_id}', [ProductController::class, 'getDetails'] )->name('getDetails');
+//show history order
+Route::get('/cart-{id}/history', [ProductController::class, 'getHistory'])->name('getHistory');
+//show all order
+Route::get('/admin/listorder', [AdminController::class, 'getOrder'])->name('getOrder');
+//show order details
+Route::get('/admin/listorder/{order_id}', [AdminController::class, 'getOrderDetails'])->name('getOrderDetails');
+//thanh toán vnpay
+Route::post('/cart/vnpay_payment/{id}', [CheckoutController::class, 'vnpay_payment'])->name('vnpay_payment');
+
+Route::get('/cart/processVnpay', [CheckoutController::class, 'processVnpay']);
+

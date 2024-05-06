@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Editing</title>
+    <title>Sửa</title>
     <!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -40,6 +40,7 @@
 
                     <div class="x_panel">
                         <div class="x_title">
+                           
                             {{-- <h2>Form Basic Elements <small>different form elements</small></h2> --}}
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -58,32 +59,29 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <?php if(!empty($success)) { ?>
-{{-- <<<<<<< HEAD --}}
-{{-- ======= --}}
-                                <h3>Thêm  thành công</h3><a href="{{ route('listing.index', ['model'=>$modelName]) }}">Danh sách {{$modelName}}</a>
-{{-- >>>>>>> 4de5f068d1afb80aca0220f1e7db82912543066b --}}
+                            
+                            <?php if(!empty($success)) { ?> 
+                                <h3>Sửa thành công</h3><a href="{{ route('listing.edit', ['model'=>$modelName,'id'=>$id]) }}">Danh sách {{$modelName}}</a>
                             <?php } else {
                                 ?>
-                            
                              <br />
                              </form>
-
-                             <form class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data"
-                                action="{{ route('editing.store', ['model'=>$modelName]) }}">
+                                <form class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data"
+                                action="{{ route('listing.update', ['model'=>$modelName,'id'=>$id ]) }}">
                                 @csrf
+                               @method('PUT')
                                 <?php
                                 if (!empty($configs)) {
-                                    foreach ($configs as $config) { 
-                                        switch ($config['type']) {
-                                            case 'text':
-                                            $field=$config['field']; 
+                                        foreach ($configs as $config) { 
+                                                switch ($config['type']) {
+                                              case 'text':
+                                              $field=$config['field'];
                                                 ?>
                                                 <div class="form-group row ">
-                                                    <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
+                                                    <label class="control-label col-md-3 col-sm-3 "><?=$config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="text" class="form-control" name="<?= $config['field'] ?>" placeholder="<?= htmlspecialchars($config['name']) ?>"class="@error($field) is-invalid @enderror" />
-                                                        @error($field)
+                                                        <input type="text" class="form-control" name="name" value="<?= htmlspecialchars($rcs->name) ?>"class="@error($id) is-invalid @enderror" />
+                                                        @error('name')
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -96,8 +94,8 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="text" class="form-control" name="<?= $config['field'] ?>" placeholder="<?= htmlspecialchars($config['name']) ?>"class="@error( $field) is-invalid @enderror" />
-                                                        @error( $field)
+                                                        <input type="text" class="form-control" name="price" value="<?= htmlspecialchars($rcs->price) ?>"class="@error( $field) is-invalid @enderror" />
+                                                        @error( 'price')
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
@@ -110,21 +108,21 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="text" class="form-control" name="<?= $config['field'] ?>" placeholder="<?= htmlspecialchars($config['name']) ?>"class="@error( $field) is-invalid @enderror" />
-                                                        @error( $field)
+                                                        <input type="text" class="form-control" name="amout" value="<?= htmlspecialchars($rcs->amount) ?>"class="@error( $field) is-invalid @enderror" />
+                                                        @error( 'amount')
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                 </div>
                                                 <?php
                                                 break;
-                                            case 'image':
+                                             case 'image':
                                             $field=$config['field'];
                                                 ?>
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <input type="file"  name="<?= $config['field'] ?>"class="@error($field) is-invalid @enderror" />
+                                                        <input type="file"  name="image"class="@error($field) is-invalid @enderror" />
                                                         @error($field)
                                                           <div class="alert alert-danger">{{ $message }}</div>
                                                         @enderror
@@ -137,7 +135,7 @@
                                                 <div class="form-group row ">
                                                     <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                     <div class="col-md-9 col-sm-9 ">
-                                                        <textarea id="product-content"  name="<?= $config['field'] ?>" class="form-control ckeditor-box" rows="3" placeholder="<?= htmlspecialchars($config['name']) ?>"></textarea>
+                                                        <textarea id="product-content"  name="content" class="form-control ckeditor-box" rows="3" value="{{!! htmlspecialchars($rcs->content) !!}}"></textarea>
                                                     </div>
                                                 </div>
                                                 <?php
@@ -149,7 +147,7 @@
                                                     <div class="form-group row ">
                                                         <label class="control-label col-md-3 col-sm-3 "><?= $config['name'] ?></label>
                                                         <div class="col-md-9 col-sm-9 ">
-                                                            <select class="form-control" name="<?= $config['field'] ?>" id="" placeholder="<?= htmlspecialchars($config['name']) ?>">
+                                                            <select class="form-control" name="category_id" id="" placeholder="<?= htmlspecialchars($config['field']) ?>">
                                                                        @foreach ($categories as $category )
                                                                          <option value="{{$category->name}}">{{$category->name}}</option>
                                                                        @endforeach
@@ -169,14 +167,16 @@
                                                             <input id="check1" type="checkbox" value="yes" name=<?= $config['field'] ?>  >
                                                             <label for="check1">Yes</label>
                                                             <br>
-                                                            <input id="check2" type="checkbox" name=<?= $config['field'] ?> value="no"  >
+                                                            <input id="check2" type="checkbox" name=featured_product value="no"  >
                                                             <label for="check2">No</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <?php
                                                 break;
-                                        }
+                                        
+                                            }
+                                    }
                                     }
                                     ?>
                                     <div class = "form-group">
@@ -184,9 +184,10 @@
                                             <button type = "submit" class = "btn btn-success">Submit</button>
                                         </div>
                                     </div>
-                                <?php } ?>
+                                
 
-                            </form>
+                              </form>
+                           
                             <?php } ?>
                         </div>
                     </div>

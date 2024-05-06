@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Base;
 
-class Product extends Base
+class Product_detail extends Model
 {
-    
     use HasFactory;
     public $title="SẢN PHẨM ";
     public function configs(){
@@ -131,7 +129,7 @@ class Product extends Base
                 'field'=>'content',
                 'name'=>'Nội dung sản phẩm',
                 'type'=>'ckeditor',
-                'listing'=>true,
+                'listing'=>false,
                 'editing'=>true,
                 'editListing'=>true
             ),
@@ -160,5 +158,8 @@ class Product extends Base
             )
             );
         return array_merge($listingConfigs, $defautlistingConfigs);
+    }
+    public function typeProduct(){
+
     }
 }

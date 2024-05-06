@@ -13,6 +13,7 @@ class Base extends Model
     public function listingConfigs(){
         return $this->getConfigs('listing');
     }
+   
     
     public function editingConfigs(){
         return $this->getConfigs('editing');
@@ -124,7 +125,8 @@ class Base extends Model
                 'type' => 'text',
                 'sort' => true,
                 'listing' => true,
-                'editing' => false
+                'editing' => false,
+                'editListing'=>true
             ),
             array(
                 'field' => 'created_at',
@@ -132,7 +134,8 @@ class Base extends Model
                 'type' => 'text',
                 'sort' => true,
                 'listing' => true,
-                'editing' => false
+                'editing' => false,
+                'editListing'=>true
             ),  
             array(
                 'field' => 'edit',

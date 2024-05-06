@@ -9,14 +9,14 @@ use App\Models\Category;
 
 class indexcontroller extends Controller
 {
-    public function index()
-    {
-       $category= Category::all();
-       $featured_product = DB::table('products')->where('featured_product', 'like', '%yes%')->get();
+    // public function index()
+    // {
+    //    $category= Category::all();
+    //    $featured_product = DB::table('products')->where('featured_product', 'like', '%yes%')->get();
 
-       return view('navbar.trangchu', [
-        'categories'=>$category,
+    //    return view('navbar.trangchu', [
+    //     'categories'=>$category,
 
-       ],compact('featured_product'));
-    }
+    //    ],compact('featured_product'));
+    // }
 }

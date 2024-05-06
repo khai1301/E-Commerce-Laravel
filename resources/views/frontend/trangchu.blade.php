@@ -2,7 +2,17 @@
 @section('main')
 @section('title', 'Trang chủ')
 
+@if (session('error'))
+<div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+</div>
+@endif
 
+@if (session('success'))
+<div class="alert alert-success" role="alert">
+    {{ session('success') }}
+</div>
+@endif
 <!-- banner-->
 <div class="banner">
     <img src="https://food.unl.edu/newsletters/images/fresh-vegetables-basket.png" alt="" id="banner">
@@ -12,145 +22,70 @@
     </nav>
 </div>
 
-{{-- <div class="content">
-    <p id="p1"><b>Mua sản phẩm lựa chọn từ vườn</b></p>
-</div> --}}
-<!-- list category -->
-{{-- <div class="container">
-   <div class="slide-container">
-        <div class="card-wrapper swiper-wrapper">
-            <div class="card swiper-slide" style="width: 18%">
-                <div class="image-box">
-                    <img src="img\index_cate_1.png" alt="">
-                </div>
-                <div class="profile-details">
-                    <img src="" alt="">
-                    <div class="name-category">
-                        <h3 class="name">Rau củ</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card swiper-slide" style="width: 18%">
-                <div class="image-box">
-                    <img src="img\index_cate_1.png" alt="">
-                </div>
-                <div class="profile-details">
-                    <img src="" alt="">
-                    <div class="name-category">
-                        <h3 class="name">Rau củ</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card swiper-slide" style="width: 18%">
-                <div class="image-box">
-                    <img src="img\index_cate_1.png" alt="">
-                </div>
-                <div class="profile-details">
-                    <img src="" alt="">
-                    <div class="name-category">
-                        <h3 class="name">Rau củ</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="card swiper-slide" style="width: 18%">
-                <div class="image-box">
-                    <img src="img\index_cate_1.png" alt="">
-                </div>
-                <div class="profile-details">
-                    <img src="" alt="">
-                    <div class="name-category">
-                        <h3 class="name">Rau củ</h3>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div> 
-</div> --}}
-
-
-{{-- <div class="content">
-    <p id="p1"><b>Chương trình khuyến mãi</b></p>
-</div> --}}
-<!-- promotion-->
-{{-- <div class="row">
-    <div class="km large1">
-        <div class="km1">
-            <img src="img\km1.png" alt="" class="img">
-        </div>
-    </div>
-    <div class="km large1">
-        <div class="km1">
-            <img src="img\km2.jpg" alt="" class="img">
-        </div>
-    </div>
-    <div class="km large1">
-        <div class="km1">
-            <img src="img\km3.jpg" alt="" class="img">
-        </div>
-    </div>
-    <div class="km large1">
-        <div class="km1">
-            <img src="img\km4.png" alt="" class="img">
-        </div>
-    </div>
-</div> --}}
-
-<div class="content">
-    <p id="p1"><b>Sản phẩm nổi bật</b></p>
+<div class="">
+    <div class="content">
+    <p id="p1" style="margin: 20px 0px"><b>Mua sản phẩm lựa chọn từ vườn</b></p>
 </div>
-<!-- all product-->
-<div class="row1">
-    @foreach ($products as $product)
-    <div class="pr" >
-        <div class="">
-            <img width="2048" height="2048" src="{{ $product -> image }}" alt="" id="pr">
+
+<div class="row" style="padding-bottom: 50px">
+    @foreach ($categories as $category)
+        <div class="menubot large">
+            <div class="menubot1 text-center" style="">
+                <a href="{{ route('laysptheoloai',$category->name) }}">
+                    <div class="container">
+                        <img src="{{ $category->image }}" alt="" class="image">
+                    </div>
+                    <div class="space" style="display:block; height: auto; padding-top: 20px;"></div>
+                    <h3>
+                        <a href="{{ route('laysptheoloai',$category->name) }}" id="text-menu">{{ $category->name }}</a>
+                    </h3>
+                </a>
+            </div>
         </div>
-        <div class="namepr">
-            <p href="giohang.html">{{ $product -> name }}</p>
-        </div>
-        <div class="price">
-            <p>{{ number_format($product -> price) }} đ</p>
-        </div>
-        <div class="add">
-            <a href="giohang.html" id="add">Thêm vào giỏ</a>
-        </div>
-    </div>
     @endforeach
-</div> 
-
-<div class="more">
-    <a href="cuahang.html" id="more">Xem thêm</a>
 </div>
-<div class="content">
+</div>
+
+
+
+<div class="" style="background-color: #fafafa">
+    <div class="content">
+        <p id="p1"><b>Sản phẩm nổi bật</b></p>
+    </div>
+    <!-- popular product-->
+    {{-- <div class="row1"> --}}
+        <div id="formList">
+            <div id="list">
+                @foreach ($products as $product)
+                    <div class="pr" >
+                        <div class="">
+                            <img width="2048" height="2048" src="{{ $product -> image }}" alt="" id="pr">
+                        </div>
+                        <div class="namepr">
+                            <p href="giohang.html">{{ $product -> name }}</p>
+                        </div>
+                        <div class="price">
+                            <p>{{ number_format($product -> price) }} đ</p>
+                        </div>
+                        <div class="add">
+                            <a href="{{ route('getDetails', [$product->id, $product->category_id]) }}" id="add">Xem chi tiết</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    {{-- </div>  --}}
+    <div class="direction">
+        <button id="prev"><</button>
+        <button id="next">></button>
+    </div>
+</div>
+
+{{-- <div class="content">
     <p id="p1"><b>Cam kết của chúng tôi</b></p>
-</div>
+</div> --}}
 <!-- slide show-->
-<div class="slideshow-container">
 
-    <div class="mySlides fade">
-        <img src="./img/slide1.jpg" style="width:100%">
-    </div>
-    
-    <div class="mySlides fade">
-        <img src="./img/slide2.jpg" style="width:100%">
-    </div>
-    
-    <div class="mySlides fade">
-        <img src="./img/slide3.jpg" style="width:100%">
-    </div>
-    
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-    
-</div>
-    <br>
-    
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span> 
-      <span class="dot" onclick="currentSlide(2)"></span> 
-      <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
 <section class="subcribe " style="padding-top: 60px;">
     <div class="subcribe-background">
         <div class="subcribe-container">
@@ -162,8 +97,7 @@
                         <form action="" class="input">
                             <div class="form-group">
                                 <input type="text" class="text-mail" placeholder="Enter email">
-                                <input class="button" type="submit" value="Đăng ký"></input>
-                                
+                                <input class="button" type="submit" value="Đăng ký">
                             </div>
                         </form>
                     </div>
@@ -172,5 +106,14 @@
         </div>
     </div>
 </section>
-
+<script language="javascript">
+    document.getElementById('next').onclick = function(){
+        const widthItem = document.querySelector('.pr').offsetWidth;
+        document.getElementById('formList').scrollLeft += widthItem;
+    }
+    document.getElementById('prev').onclick = function(){
+        const widthItem = document.querySelector('.pr').offsetWidth;
+        document.getElementById('formList').scrollLeft -= widthItem;
+    }
+</script>
 @stop

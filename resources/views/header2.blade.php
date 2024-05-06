@@ -73,7 +73,7 @@
                             <a href="/" class="menu-link">Trang chủ</a>
                         </li>
                         <li class="menubar1">
-                            <a href="{{ route('cuahang.') }}" class="menu-link">Cửa hàng</a>
+                            <a href="{{ route('cuahang') }}" class="menu-link">Cửa hàng</a>
                             <ul class="sub-menu">
                                 @foreach ($categories as $category )
                                     <li><a href="">{{$category->name}}</a></li>

@@ -54,17 +54,29 @@ class Category extends Base
                 'filter'=>'equal',
                 'sort'=>true,
                 'listing'=>true,
-                'editing'=>false
+                'editing'=>true,
+                'editListing'=>true
             ),
        
             array(
                 'field'=>'name',
-                'name'=>'Tên sản phẩm',
+                'name'=>'Tên danh mục',
                 'type'=>'text',
                 'filter'=>'like',
                 'sort'=>true,
                 'listing'=>true,
-                'editing'=>true
+                'editing'=>true,
+                'editListing'=>true
+            ),
+            array(
+                'field'=>'image',
+                'name'=>'Ảnhdanh mục',
+                'type'=>'image',
+                'listing'=>true,
+                'editing'=>true,
+                'editListing'=>true,
+                'validate'=>'required'
+                
             )
             );
         return array_merge($listingConfigs, $defautlistingConfigs);

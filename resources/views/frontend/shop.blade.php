@@ -5,9 +5,9 @@
     <div class="flex-row container">
         <div class="left-title">
             <nav class="title-main" >
-                <a href="{{ route('home') }}" style="font-weight: 100">TRANG CHỦ</a>
+                <a href="{{ route('home') }}" style="font-weight: 100">Trang Chủ</a>
                 <span style="font-weight: 100">/</span>
-                CỬA HÀNG
+                <a href="{{ route('storeWeb') }}">Cửa Hàng</a> / {{ $name }}
             </nav>
         </div>
         
@@ -33,25 +33,25 @@
             
         </div>
         <div class="col large-9">
-        <div class="row1" >
-            @foreach ($products_type as $prd)
-                <div class="pr" >
-                    <div class="">
-                        <img width="2048" height="2048" src="{{ $prd->image }}" alt="" id="pr">
+            <div class="row1" >
+                @foreach ($products_type as $prd)
+                    <div class="pr" >
+                        <div class="">
+                            <img width="2048" height="2048" src="{{ $prd->image }}" alt="" id="pr">
+                        </div>
+                        <div class="namepr">
+                            <a href="">{{ $prd->name }}</a>
+                        </div>
+                        <div class="price">
+                            <p>{{ number_format($prd->price) }}đ</p>
+                        </div>
+                        <div class="add">
+                            @csrf <a  href="#" data-url="{{ route('addcart', ['id'=>$prd->id]) }}" id="add" class="add_to_cart">Thêm vào giỏ</a>
+                        </div>
                     </div>
-                    <div class="namepr">
-                        <a href="">{{ $prd->name }}</a>
-                    </div>
-                    <div class="price">
-                        <p>{{ number_format($prd->price) }}đ</p>
-                    </div>
-                    <div class="add">
-                        @csrf <a  href="#" data-url="{{ route('addcart', ['id'=>$prd->id]) }}" id="add" class="add_to_cart">Thêm vào giỏ</a>
-                    </div>
-                </div>
-            @endforeach 
+                @endforeach 
+            </div>
         </div>
-    </div>
     </div>
 </main>
 

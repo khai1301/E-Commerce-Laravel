@@ -40,7 +40,7 @@
         </li>
         <li><a><i class="fa fa-table"></i> Quản lý đơn hàng <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="{{ route('listing.index', ['model'=>'order']) }}"> Đơn hàng </a></li>
+            <li><a href="{{ route('getOrder') }}"> Đơn hàng </a></li>
 
           </ul>
         </li>
